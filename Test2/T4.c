@@ -43,6 +43,7 @@ void Test_fread()
         return;
     }
 
+	// 读取第二个
     fseek(pFile, sizeof(AAA), SEEK_SET);
 
     fread(&A, sizeof(AAA), 1, pFile);
