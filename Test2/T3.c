@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
 
 	if(ret != 0)
 	{
-		printf("Fail to stat");
+		printf("Fail to stat\n");
 		return 0;
 	}
 
