@@ -10,7 +10,7 @@ typedef struct tagAAA
 } AAA;
 
 // 将结构体写入文件
-void Test_fwrite()
+void Test_fwrite() 
 {
     FILE * pFile;
     AAA arrA[] = 
