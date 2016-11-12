@@ -70,6 +70,7 @@ void readDir(DIR * dir)
 		}
 	}
 	cur_dir--;
+	closedir(dir);
 }
 
 int isDir(char * fileName)
@@ -94,7 +95,7 @@ void printSymbol()
 		printf("│");
 		while(--t)
 			printf("     ");
-		printf("│");
+		printf("├─");
 	}
 	else
 	{
