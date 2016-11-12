@@ -6,13 +6,10 @@
 #include <sys/stat.h>
 
 /*
-
 \033[显示方式;前景色;背景色m
-
 
 默认颜色：\033[0m
 前景红色背景黑色：\033[0;31;40m
-
 */
 
 void myTree(char * szPath, int deep);
