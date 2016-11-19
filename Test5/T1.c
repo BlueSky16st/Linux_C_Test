@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-
 void TestPID();
 void TestFork();
 void TestVFork();
@@ -173,93 +172,6 @@ void TestExec()
 		printf("Parent: %d\n", getpid());
 		
 		usleep(100000);
-	}
-	
-}
-
-// 打印环境变量
-extern char ** environ;
-void TestEnv()
-{
-	// environ是全局变量，保存所有环境变量
-	char ** p = environ;
-	while(*p)
-	{
-		printf("%s\n", *p);
-		p++;
-	}
-	printf("\n\n");
-	
-	// 读取指定环境变量
-	printf("PATH:%s\n", getenv("PATH"));
-	
-	
-	
-	// 设置环境变量
-	putenv("AAA=Hello world!");
-	// 创建一个子进程
-	pid_t pid = fork();
-	if(pid == 0)
-	{
-		printf("AAA = %s\n", getenv("AAA"));
-	}
-	else
-	{
-		printf("Parent1 AAA = %s\n", getenv("AAA"));
-	}
-	
-	// AAA后不加任何字符，删除环境变量
-	putenv("AAA");
-	
-	printf("now AAA = %s\n", getenv("AAA"));
-	
-}
-
-// 测试wait函数
-// 打印信号与退出码
-void TestWait()
-{
-	pid_t pid1, pid2;
-	
-	printf("Start [%d]\n", getpid());
-	
-	pid1 = fork();
-	if(pid1 == 0)
-	{
-		printf("child 1 [%d]\n", getpid());
-		exit(1);
-	}
-	
-	pid2 = fork();
-	if(pid2 == 0)
-	{
-		printf("child 2 [%d]\n", getpid());
-		exit(2);
-	}
-	
-	int iState;
-	pid_t pid = wait(&iState);
-	if(pid > 0)
-	{
-		// iState & 0xFF：信号码
-		// (iState >> 8) & 0xFF：退出码
-		printf("[%d] SIG=%d exitCode=%d\n", getpid(), iState & 0xFF, (iState >> 8) & 0xFF);
-	}
-	
-	wait(NULL);
-	
-	printf("End [%d]\n", getpid());
-	
-}
-
-
-void TestZomb()
-{
-	pid_t pid = fork();
-	
-	if(pid == 0)
-	{
-		
 	}
 	
 }
