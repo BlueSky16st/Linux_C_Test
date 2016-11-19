@@ -51,6 +51,7 @@ void TestIOFlag2()
 	ioctl(STDOUT_FILENO, TCGETA, &old);
 	new = old;
 
+	// 置位标识位，小写转大写
 	new.c_oflag |= OLCUC;
 
 	ioctl(STDOUT_FILENO, TCSETA, &new);
@@ -121,10 +122,10 @@ void TestIOFlag5()
 	new.c_lflag &= ~ICANON;	// 设置无缓冲
 
 	//new.c_cc[VMIN] = 10;	// 最多输入10个字符
-	new.c_cc[VMIN] = 0;		// 不限制输入长度
+	new.c_cc[VMIN] = 0;		// 不限定
 
-	new.c_cc[VTIME] = 50;	// 5秒超时时间，如果c_cc[VMIN]等于0，只读取1个字符
-	//new.c_cc[VTIME] = 0;	// 不超时，如果c_cc[VMIN]等于0,read()直接返回，不读取任何字符
+	new.c_cc[VTIME] = 50;	// 5秒超时时间，如果c_cc[VMIN]等于0，read()只读取1个字符，scanf()不限制字符，直到回车或超时
+	//new.c_cc[VTIME] = 0;	// 不超时，如果c_cc[VMIN]等于0,read()直接返回，不读取任何字符，scanf()不限制字符和时间，直到回车
 
 	ioctl(STDIN_FILENO, TCSETA, &new);
 
