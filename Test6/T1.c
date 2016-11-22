@@ -11,7 +11,7 @@ void TestSignal();
 
 int main(void)
 {
-    TestSignal();
+    TestMicroTime();
 
     return 0;
 }
