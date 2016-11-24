@@ -166,6 +166,7 @@ void sigactionWaitFun(int sig)
 	wait(NULL);
 }
 
+// 第三个参数是保留参数
 void complexSigactionFun(int sig, siginfo_t * pInfo, void * ex)
 {
 	printf("Receive signal %d\n", sig);
@@ -183,7 +184,9 @@ void TestSigaction()
 	struct sigaction act = { 0 };
 	struct sigaction old = { 0 };
 	
+	// 设置第一类处理函数
 	//act.sa_handler = sigactionWaitFun;
+	// 设置捕获信号SIGUSR1
 	//sigaction(SIGUSR1, &act, &old);
 
 	// sigaction()函数使用第二类函数指针，需要置位SA_SIGINFO
@@ -193,7 +196,7 @@ void TestSigaction()
 	// 捕获信号并处理完成之后，恢复缺省处理
 	act.sa_flags |= SA_RESETHAND;
 
-	// 设置处理函数
+	// 设置第二类处理函数
 	act.sa_sigaction = complexSigactionFun;
 
 	// 设置在函数处理期间，暂时屏蔽SIGINT信号(Ctrl+C)
