@@ -1,0 +1,213 @@
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 14:44 ?        00:00:01 /sbin/init
+root         2     0  0 14:44 ?        00:00:00 [kthreadd]
+root         3     2  0 14:44 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0 14:44 ?        00:00:00 [kworker/0:0H]
+root         7     2  0 14:44 ?        00:00:01 [rcu_sched]
+root         8     2  0 14:44 ?        00:00:00 [rcu_bh]
+root         9     2  0 14:44 ?        00:00:00 [rcuos/0]
+root        10     2  0 14:44 ?        00:00:00 [rcuob/0]
+root        11     2  0 14:44 ?        00:00:00 [migration/0]
+root        12     2  0 14:44 ?        00:00:00 [watchdog/0]
+root        13     2  0 14:44 ?        00:00:00 [watchdog/1]
+root        14     2  0 14:44 ?        00:00:00 [migration/1]
+root        15     2  0 14:44 ?        00:00:00 [ksoftirqd/1]
+root        17     2  0 14:44 ?        00:00:00 [kworker/1:0H]
+root        18     2  0 14:44 ?        00:00:00 [rcuos/1]
+root        19     2  0 14:44 ?        00:00:00 [rcuob/1]
+root        20     2  0 14:44 ?        00:00:00 [watchdog/2]
+root        21     2  0 14:44 ?        00:00:00 [migration/2]
+root        22     2  0 14:44 ?        00:00:00 [ksoftirqd/2]
+root        24     2  0 14:44 ?        00:00:00 [kworker/2:0H]
+root        25     2  0 14:44 ?        00:00:00 [rcuos/2]
+root        26     2  0 14:44 ?        00:00:00 [rcuob/2]
+root        27     2  0 14:44 ?        00:00:00 [watchdog/3]
+root        28     2  0 14:44 ?        00:00:00 [migration/3]
+root        29     2  0 14:44 ?        00:00:00 [ksoftirqd/3]
+root        31     2  0 14:44 ?        00:00:00 [kworker/3:0H]
+root        32     2  0 14:44 ?        00:00:00 [rcuos/3]
+root        33     2  0 14:44 ?        00:00:00 [rcuob/3]
+root        34     2  0 14:44 ?        00:00:00 [khelper]
+root        35     2  0 14:44 ?        00:00:00 [kdevtmpfs]
+root        36     2  0 14:44 ?        00:00:00 [netns]
+root        37     2  0 14:44 ?        00:00:00 [perf]
+root        38     2  0 14:44 ?        00:00:00 [khungtaskd]
+root        39     2  0 14:44 ?        00:00:00 [writeback]
+root        40     2  0 14:44 ?        00:00:00 [ksmd]
+root        41     2  0 14:44 ?        00:00:01 [khugepaged]
+root        42     2  0 14:44 ?        00:00:00 [crypto]
+root        43     2  0 14:44 ?        00:00:00 [kintegrityd]
+root        44     2  0 14:44 ?        00:00:00 [bioset]
+root        45     2  0 14:44 ?        00:00:00 [kblockd]
+root        46     2  0 14:44 ?        00:00:00 [ata_sff]
+root        47     2  0 14:44 ?        00:00:00 [md]
+root        48     2  0 14:44 ?        00:00:00 [devfreq_wq]
+root        54     2  0 14:44 ?        00:00:00 [kswapd0]
+root        55     2  0 14:44 ?        00:00:00 [vmstat]
+root        56     2  0 14:44 ?        00:00:00 [fsnotify_mark]
+root        57     2  0 14:44 ?        00:00:00 [ecryptfs-kthrea]
+root        68     2  0 14:44 ?        00:00:00 [kthrotld]
+root        69     2  0 14:44 ?        00:00:00 [acpi_thermal_pm]
+root        70     2  0 14:44 ?        00:00:00 [scsi_eh_0]
+root        71     2  0 14:44 ?        00:00:00 [scsi_tmf_0]
+root        72     2  0 14:44 ?        00:00:00 [scsi_eh_1]
+root        73     2  0 14:44 ?        00:00:00 [scsi_tmf_1]
+root        75     2  0 14:44 ?        00:00:00 [scsi_eh_2]
+root        76     2  0 14:44 ?        00:00:00 [scsi_tmf_2]
+root        77     2  0 14:44 ?        00:00:00 [scsi_eh_3]
+root        78     2  0 14:44 ?        00:00:00 [scsi_tmf_3]
+root        84     2  0 14:44 ?        00:00:00 [ipv6_addrconf]
+root       105     2  0 14:44 ?        00:00:00 [deferwq]
+root       106     2  0 14:44 ?        00:00:00 [charger_manager]
+root       112     2  0 14:44 ?        00:00:00 [kworker/3:1H]
+root       113     2  0 14:44 ?        00:00:00 [kworker/1:1H]
+root       114     2  0 14:44 ?        00:00:00 [kworker/0:1H]
+root       119     2  0 14:44 ?        00:00:00 [kworker/2:1H]
+root       170     2  0 14:44 ?        00:00:00 [kpsmoused]
+root       180     2  0 14:44 ?        00:00:00 [jbd2/sdb3-8]
+root       181     2  0 14:44 ?        00:00:00 [ext4-rsv-conver]
+root       325     1  0 14:44 ?        00:00:00 upstart-udev-bridge --daemon
+root       335     1  0 14:44 ?        00:00:00 /lib/systemd/systemd-udevd --daemon
+root       430     2  0 14:44 ?        00:00:00 [jbd2/sdb6-8]
+root       431     2  0 14:44 ?        00:00:00 [ext4-rsv-conver]
+root       445     2  0 14:44 ?        00:00:00 [jbd2/sdb7-8]
+root       447     2  0 14:44 ?        00:00:00 [ext4-rsv-conver]
+message+   494     1  0 14:44 ?        00:00:00 dbus-daemon --system --fork
+root       570     2  0 14:44 ?        00:00:00 [kvm-irqfd-clean]
+root       588     1  0 14:44 ?        00:00:00 /usr/sbin/bluetoothd
+root       612     1  0 14:44 ?        00:00:00 /lib/systemd/systemd-logind
+root       627     2  0 14:44 ?        00:00:00 [krfcommd]
+syslog     636     1  0 14:44 ?        00:00:00 rsyslogd
+avahi      648     1  0 14:44 ?        00:00:00 avahi-daemon: running [home-ubuntu.local]
+avahi      653   648  0 14:44 ?        00:00:00 avahi-daemon: chroot helper
+root       712     1  0 14:44 ?        00:00:00 smbd -F
+root       757     1  0 14:44 ?        00:00:00 /usr/sbin/ModemManager
+root       779   712  0 14:44 ?        00:00:00 smbd -F
+root       788     1  0 14:44 ?        00:00:00 NetworkManager
+root       794     1  0 14:44 ?        00:00:00 /usr/lib/policykit-1/polkitd --no-debug
+root       841     1  0 14:44 ?        00:00:00 upstart-file-bridge --daemon
+root       853     1  0 14:44 ?        00:00:00 upstart-socket-bridge --daemon
+root       910     1  0 14:44 tty4     00:00:00 /sbin/getty -8 38400 tty4
+root       914     1  0 14:44 tty5     00:00:00 /sbin/getty -8 38400 tty5
+root       921     1  0 14:44 tty2     00:00:00 /sbin/getty -8 38400 tty2
+root       923     1  0 14:44 tty3     00:00:00 /sbin/getty -8 38400 tty3
+root       927     1  0 14:44 tty6     00:00:00 /sbin/getty -8 38400 tty6
+root       986     1  0 14:44 ?        00:00:01 /usr/sbin/irqbalance
+root       988     1  0 14:44 ?        00:00:00 cron
+whoopsie   997     1  0 14:44 ?        00:00:00 whoopsie
+root      1067     1  0 14:44 ?        00:00:00 /usr/sbin/cups-browsed
+root      1072     1  0 14:44 ?        00:00:00 acpid -c /etc/acpi/events -s /var/run/acpid.socket
+mysql     1090     1  0 14:44 ?        00:00:10 /usr/sbin/mysqld
+kernoops  1092     1  0 14:44 ?        00:00:00 /usr/sbin/kerneloops
+root      1166     1  0 14:44 tty1     00:00:00 /sbin/getty -8 38400 tty1
+root      1186     1  0 14:44 ?        00:00:00 lightdm
+root      1195     1  0 14:44 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+root      1202  1186  2 14:44 tty7     00:08:07 /usr/bin/X -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root      1220  1186  0 14:44 ?        00:00:00 lightdm --session-child 12 15
+root      1221     2  0 14:44 ?        00:00:00 [kauditd]
+home      1225  1220  0 14:44 ?        00:00:00 init --user
+root      1251   788  0 14:44 ?        00:00:00 /sbin/dhclient -d -sf /usr/lib/NetworkManager/nm-dhcp-client.action -pf /run/sendsigs.omit.d/network-manager.dhclient-eth0.pid -lf /var/lib/NetworkManager/dhclient-dcd775cb-a012-4afb-83ea-b8179e21f377-eth0.lease -cf /var/lib/NetworkManager/dhclient-eth0.conf eth0
+home      1293  1225  0 14:44 ?        00:00:07 dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-NKm5sjwqY1
+home      1304  1225  0 14:44 ?        00:00:00 upstart-event-bridge
+home      1316  1225  0 14:44 ?        00:00:00 gnome-keyring-daemon --start --components pkcs11,secrets
+home      1318  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/hud/window-stack-bridge
+home      1323  1225  0 14:44 ?        00:00:06 /usr/bin/fcitx
+home      1334  1225  0 14:44 ?        00:00:01 //bin/dbus-daemon --fork --print-pid 5 --print-address 7 --config-file /usr/share/fcitx/dbus/daemon.conf
+home      1342  1225  0 14:44 ?        00:00:00 /usr/bin/fcitx-dbus-watcher unix:abstract=/tmp/dbus-8sINEx39LF,guid=fc3f348202078fa90fa4bf7f58392f5f 1334
+home      1349  1225  0 14:44 ?        00:00:00 /usr/lib/unity-settings-daemon/unity-settings-daemon
+home      1353  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/hud/hud-service
+home      1355  1225  0 14:44 ?        00:00:00 /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
+home      1356  1225  0 14:44 ?        00:00:00 gnome-session --session=ubuntu
+home      1362  1355  0 14:44 ?        00:00:00 /bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
+home      1364  1225  0 14:44 ?        00:00:00 upstart-dbus-bridge --daemon --system --user --bus-name system
+home      1366  1225  0 14:44 ?        00:00:21 /usr/lib/unity/unity-panel-service
+home      1367  1225  0 14:44 ?        00:00:02 upstart-dbus-bridge --daemon --session --user --bus-name session
+home      1369  1225  0 14:44 ?        00:00:00 upstart-file-bridge --daemon --user
+home      1371  1225  0 14:44 ?        00:00:02 /usr/lib/x86_64-linux-gnu/bamf/bamfdaemon
+home      1373  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/notify-osd
+home      1375  1225  0 14:44 ?        00:00:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+home      1387  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfsd
+home      1400  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+root      1413     1  0 14:44 ?        00:00:00 /usr/lib/upower/upowerd
+home      1441  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-keyboard-service --use-gtk
+home      1444  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
+home      1445  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-bluetooth/indicator-bluetooth-service
+home      1448  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-power/indicator-power-service
+home      1456  1225  0 14:44 ?        00:00:08 /usr/lib/x86_64-linux-gnu/indicator-datetime/indicator-datetime-service
+home      1458  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-sound/indicator-sound-service
+home      1462  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-printers/indicator-printers-service
+home      1470  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-session/indicator-session-service
+home      1479  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/indicator-application/indicator-application-service
+home      1517  1225  0 14:44 ?        00:00:15 /usr/bin/pulseaudio --start --log-target=syslog
+home      1523  1225  0 14:44 ?        00:00:00 /usr/lib/evolution/evolution-source-registry
+rtkit     1529     1  0 14:44 ?        00:00:00 /usr/lib/rtkit/rtkit-daemon
+home      1598  1225  0 14:44 ?        00:00:00 /usr/lib/evolution/evolution-calendar-factory
+colord    1727     1  0 14:44 ?        00:00:00 /usr/lib/colord/colord
+home      1736  1225  0 14:44 ?        00:00:00 /usr/lib/dconf/dconf-service
+root      1779     1  0 14:44 ?        00:00:00 /bin/sh -e /proc/self/fd/9
+root      1783  1779  0 14:44 ?        00:00:00 initctl emit plymouth-ready
+nobody    1797   788  0 14:44 ?        00:00:00 /usr/sbin/dnsmasq --no-resolv --keep-in-foreground --no-hosts --bind-interfaces --pid-file=/run/sendsigs.omit.d/network-manager.dnsmasq.pid --listen-address=127.0.1.1 --conf-file=/var/run/NetworkManager/dnsmasq.conf --cache-size=0 --proxy-dnssec --enable-dbus=org.freedesktop.NetworkManager.dnsmasq --conf-dir=/etc/NetworkManager/dnsmasq.d
+root      1945     1  0 14:44 ?        00:00:00 nmbd -D
+home      1960  1356  1 14:44 ?        00:04:16 compiz
+home      1969  1356  0 14:44 ?        00:00:00 /usr/lib/unity-settings-daemon/unity-fallback-mount-helper
+home      1970  1356  0 14:44 ?        00:00:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+home      1971  1356  0 14:44 ?        00:00:03 nautilus -n
+home      1978  1225  0 14:44 ?        00:00:00 /usr/bin/ibus-daemon --replace --xim --panel disable
+home      1979  1356  0 14:44 ?        00:00:00 nm-applet
+home      1986  1978  0 14:44 ?        00:00:00 /usr/lib/ibus/ibus-dconf
+home      1989  1225  0 14:44 ?        00:00:00 /usr/lib/ibus/ibus-x11 --kill-daemon
+home      2011  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+root      2016     1  0 14:44 ?        00:00:06 /usr/lib/udisks2/udisksd --no-debug
+home      2029  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+home      2033  1225  0 14:44 ?        00:00:00 /usr/lib/x86_64-linux-gnu/gconf/gconfd-2
+home      2036  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+home      2040  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+home      2046  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.16 /org/gtk/gvfs/exec_spaw/0
+home      2066  1978  0 14:44 ?        00:00:00 /usr/lib/ibus/ibus-ui-gtk3
+home      2070  1978  0 14:44 ?        00:00:00 /usr/lib/ibus/ibus-engine-simple
+home      2075  1978  0 14:44 ?        00:00:00 /usr/lib//ibus/ibus-engine-sunpinyin --ibus
+home      2080  1225  0 14:44 ?        00:00:00 /usr/lib/gvfs/gvfsd-burn --spawner :1.16 /org/gtk/gvfs/exec_spaw/1
+home      2130  1356  0 14:45 ?        00:00:00 telepathy-indicator
+home      2138  1225  0 14:45 ?        00:00:00 /usr/lib/telepathy/mission-control-5
+home      2160  1356  0 14:45 ?        00:00:00 zeitgeist-datahub
+home      2165  1225  0 14:45 ?        00:00:00 /usr/bin/zeitgeist-daemon
+home      2171  1225  0 14:45 ?        00:00:00 /usr/lib/x86_64-linux-gnu/zeitgeist-fts
+home      2187  2171  0 14:45 ?        00:00:00 /bin/cat
+root      2361     1  0 14:45 ?        00:00:00 /usr/sbin/cupsd -f
+home      2418  1356  0 14:45 ?        00:00:00 update-notifier
+home      2443  1356  0 14:46 ?        00:00:00 /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
+home      3296  1225  0 14:51 ?        00:00:00 /usr/lib/x86_64-linux-gnu/unity-scope-home/unity-scope-home
+home      3307  1225  0 14:51 ?        00:00:01 /usr/bin/unity-scope-loader applications/applications.scope applications/scopes.scope commands.scope
+home      3309  1225  0 14:51 ?        00:00:00 /usr/lib/x86_64-linux-gnu/unity-lens-files/unity-files-daemon
+home     10891  1225  0 20:26 ?        00:00:00 gnome-terminal
+home     10896 10891  0 20:26 ?        00:00:00 gnome-pty-helper
+home     10897 10891  0 20:26 pts/5    00:00:00 bash
+root     11606     2  0 20:38 ?        00:00:00 [kworker/2:0]
+root     11663     2  0 20:38 ?        00:00:00 [kworker/0:0]
+root     12359     2  0 20:52 ?        00:00:00 [kworker/u8:1]
+home     12719  1225  1 21:03 ?        00:00:14 /usr/share/code/code
+home     12723 12719  0 21:03 ?        00:00:00 /usr/share/code/code --type=zygote --no-sandbox
+home     12744 12719  1 21:03 ?        00:00:16 /usr/share/code/code --type=gpu-process --channel=12719.0.950426816 --mojo-application-channel-token=EDB527D556211EE92718A1ADB7304B89 --no-sandbox --window-depth=24 --x11-visual-id=33 --supports-dual-gpus=false --gpu-driver-bug-workarounds=4,28,34,37,55,71,74 --gpu-vendor-id=0x10de --gpu-device-id=0x0fc6 --gpu-driver-vendor=NVIDIA --gpu-driver-version=367.44 --gpu-driver-date --v8-natives-passed-by-fd --v8-snapshot-passed-by-fd
+home     12771 12719  0 21:03 ?        00:00:01 /usr/share/code/code /usr/share/code/resources/app/out/bootstrap --type=SharedProcess
+home     12778 12723  6 21:03 ?        00:01:30 /usr/share/code/code --type=renderer --no-sandbox --primordial-pipe-token=88EE0E8F0A2B2FBB2F5EE71D94718781 --lang=zh-CN --node-integration=true --background-color=#FFFFFF --enable-pinch --num-raster-threads=2 --content-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --video-image-texture-target=3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553,3553 --disable-accelerated-video-decode --mojo-channel-token=483EE6620213ADD16CC8CBBABD6C00D3 --mojo-application-channel-token=A9C0FC4E5C1F7660A9193D113EA2C7EE --channel=12719.1.891312875 --v8-natives-passed-by-fd --v8-snapshot-passed-by-fd
+home     12806 12778  0 21:03 ?        00:00:04 /usr/share/code/code /usr/share/code/resources/app/out/bootstrap --type=extensionHost
+home     12816 12778  0 21:03 ?        00:00:01 /usr/share/code/code ./terminalProcess
+home     12819 12816  0 21:03 pts/1    00:00:00 /bin/bash
+home     12834 12778  0 21:03 ?        00:00:01 /usr/share/code/code /usr/share/code/resources/app/out/bootstrap --type=watcherService
+home     12849 12778  0 21:03 ?        00:00:02 /usr/share/code/code /usr/share/code/resources/app/out/bootstrap git /home/home/文档/Git/Linux_C_Test utf8 /usr/share/code/code 1.9.1
+home     12860 12806  0 21:03 ?        00:00:03 /home/home/.vscode/extensions/ms-vscode.cpptools-0.9.2/bin/Microsoft.VSCode.CPP.Extension.linux
+home     12914  1225  0 21:03 ?        00:00:00 /usr/lib/x86_64-linux-gnu/unity-lens-music/unity-music-daemon
+root     13059     2  0 21:06 ?        00:00:00 [kworker/3:1]
+root     13154     2  0 21:06 ?        00:00:00 [kworker/0:1]
+root     13557     2  0 21:11 ?        00:00:00 [kworker/2:1]
+root     13718     2  0 21:14 ?        00:00:00 [kworker/3:2]
+root     13722     2  0 21:14 ?        00:00:00 [kworker/1:1]
+root     13950     2  0 21:16 ?        00:00:00 [kworker/1:3]
+root     14132     2  0 21:18 ?        00:00:00 [kworker/u8:2]
+root     14287     2  0 21:19 ?        00:00:00 [kworker/0:2]
+root     14449     2  0 21:22 ?        00:00:00 [kworker/2:2]
+root     14452     2  0 21:22 ?        00:00:00 [kworker/0:3]
+root     14482     2  0 21:24 ?        00:00:00 [kworker/3:0]
+root     14491     2  0 21:25 ?        00:00:00 [kworker/2:3]
+home     14513 12819  0 21:25 pts/1    00:00:00 grep --color=auto pts
+home     14557 12819  0 21:26 pts/1    00:00:00 ps -ef

@@ -23,7 +23,7 @@ void AlarmFun(int sig)
 	printf("timer hit: x = %lld\n", x);
 
 	// 设置多个定时器
-	static n = 0;
+	static int n = 0;
 	n++;
 	if(n % 2 == 0)		// 2秒
 	{
@@ -101,6 +101,11 @@ void MicroTimerFun(int sig)
 
 }
 
+/*
+ITIMER_REAL：记录CPU执行总时间
+ITIMER_PROF：记录CPU执行本程序时候的总时间
+ITIMER_VIRTUAL：记录CPU在本程序用户态占用的总时间
+*/
 void TestMicroTimer()
 {
 	struct itimerval itv;

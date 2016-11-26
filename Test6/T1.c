@@ -254,7 +254,7 @@ void TestSigaction_Fork()
 
 	while(1)
 	{
-		printf(".");
+		fprintf(stderr, ".");
 	}
 
 }

@@ -6,7 +6,7 @@ void TestSelect();
 
 int main(void)
 {
-    TestSelect();
+    TestPipe();
 
     return 0;
 }
