@@ -4,16 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 
 void TestPipe();
 void TestDblPipe();
 void TestDupPipe();
 void Testpopen();
 void Testpopen2();
+void TestFIFO();
 
 int main(void)
 {
-	Testpopen2();
+	TestFIFO();
 
 	return 0;
 }
@@ -242,7 +244,7 @@ void Testpopen2()
 	}
 
 	char szBuf[256];
-	while(fgets(szBuf, 256,pPs))
+	while(fgets(szBuf, 256, pPs))
 	{
 		fprintf(pGrep, "%s\n", szBuf);
 	}
@@ -252,3 +254,84 @@ void Testpopen2()
 
 }
 
+// 创建管道文件
+void TestFIFO()
+{
+	char mode = 'r';	// 选择读或写模式，"w"或"r"
+	mode = getchar();
+
+	char szFile[] = "pnod1";	// 管道文件
+	char szBuf[1024] = { 0 };
+	int fd, len;
+	struct stat info;
+
+	if(stat(szFile, &info) != 0)
+	{
+		if(mkfifo(szFile, 0664) != 0)
+		{
+			perror("Error");
+			return;
+		}
+	}
+	else if(!S_ISFIFO(info.st_mode))
+	{
+		printf("Cannot create file\n");
+		return;
+	}
+
+	if(mode == 'r')
+	{
+		// 读
+		fd = open(szFile, O_RDONLY);
+		if(fd < 0)
+		{
+			perror("Error");
+			return;
+		}
+
+		while(1)
+		{
+			memset(szBuf, 0, 1024);
+			len = read(fd, szBuf, 1024);
+			if(len < 0)
+			{
+				perror("Error");
+				break;
+			}
+			else if(len == 0)
+			{
+				perror("Error");
+				break;
+			}
+
+			printf("Receive: %s", szBuf);
+		}
+
+		close(fd);
+
+	}
+	else if(mode == 'w')
+	{
+		// 写
+		fd = open(szFile, O_WRONLY);
+		if(fd < 0)
+		{
+			perror("Error");
+			return;
+		}
+
+		while(1)
+		{
+			fprintf(stderr, "Send: ");
+
+			memset(szBuf, 0, 1024);
+			read(0, szBuf, 1024);
+
+			write(fd, szBuf, strlen(szBuf));
+		}
+
+		close(fd);
+
+	}
+
+}
