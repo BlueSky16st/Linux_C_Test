@@ -14,9 +14,11 @@ int main(void)
 }
 
 
+// 创建IPC
 void TestFtok()
 {
 	key_t key;
+	// 通过文件名和id获取key
 	key = ftok("a.txt", 1);
 	if(key == -1)
 	{

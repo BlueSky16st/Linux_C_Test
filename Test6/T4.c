@@ -240,6 +240,7 @@ void Testpopen2()
 	if(!pGrep)
 	{
 		perror("Error pGrep");
+		pclose(pPa);
 		return;
 	}
 
