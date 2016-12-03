@@ -103,10 +103,12 @@ void TestMsgRecvSend()
 
 
 
-// 获取消息队列信息并打印
-void PrintMsqInfo(struct msqid_ds * pstMsgQ)
+// 获取消息队列信息
+void PrintSTATInfo(struct msqid_ds * pstMsgQ)
 {
-	printf("\n\n权限信息\n");
+	printf("\n---------------------------------\n\n");
+
+	printf("权限信息\n");
 	printf("key: %d\n", pstMsgQ->msg_perm.__key);
 	printf("Ownner uid: %d\n", pstMsgQ->msg_perm.uid);
 	printf("Ownner gid: %d\n", pstMsgQ->msg_perm.gid);
@@ -127,7 +129,38 @@ void PrintMsqInfo(struct msqid_ds * pstMsgQ)
 	printf("Last Send pid: %d\n", pstMsgQ->msg_lspid);
 	printf("Last Receive pid: %d\n", pstMsgQ->msg_lrpid);
 
-	printf("\n---------------------------------\n");
+	printf("\n---------------------------------\n\n");
+
+}
+
+void PrintfINFOInfo(struct msginfo * pInfo)
+{
+	printf("\n---------------------------------\n\n");
+
+	printf("系统限制信息\n");
+	printf("Message Max Length: %d\n", pInfo->msgmax);
+	printf("Message Max Number: %d\n", pInfo->msgmni);
+	printf("Message Max Length(Bytes): %d\n", pInfo->msgmnb);
+
+	printf("\n---------------------------------\n\n");	
+
+	printf("当前消息队列信息\n");
+	printf("Current Queue Count: %d\n", pInfo->msgpool);
+	printf("Current Message Count: %d\n", pInfo->msgmap);
+	printf("Current All Messages Length(Bytes): %d\n", pInfo->msgtql);
+
+
+	printf("\n---------------------------------\n\n");
+
+}
+
+void ShowParamInfo()
+{
+	printf("\n输入以下参数\n");
+	printf("stat: 获取权限信息\n");
+	printf("info: 获取系统消息队列信息\n");
+	printf("set: 设置权限信息\n");
+	printf("exit: 退出程序\n\n");
 
 }
 
@@ -151,11 +184,78 @@ void TestMsgCtl()
 	printf("msqid: %d\n", msqid);
 
 	struct msqid_ds stMsgQ;
-	msgctl(msqid, IPC_STAT, &stMsgQ);
+	char szCmd[20] = { 0 };
+	int ret;
+	while(1)
+	{
+		ShowParamInfo();
 
-	PrintMsqInfo(&stMsgQ);
+		fprintf(stderr, "cmd:");
+		scanf("%s", szCmd);
 
+		if(!strcmp(szCmd, "stat"))
+		{
+			// IPC_STAT:获取属性
+			msgctl(msqid, IPC_STAT, &stMsgQ);
 
+			PrintSTATInfo(&stMsgQ);
+
+		}
+		else if(!strcmp(szCmd, "info"))
+		{
+			// MSG_INFO:获取系统消息队列信息
+			// 需要定义宏：#define _GNU_SOURCE 才可以使用MSG_INFO
+			// 指定MSG_INFO之后,stMsgQ的类型需要转换为msginfo才可以使用
+			msgctl(msqid, MSG_INFO, &stMsgQ);
+
+			PrintfINFOInfo((struct msginfo *)&stMsgQ);
+
+		}
+		else if(!strcmp(szCmd, "set"))
+		{
+			msgctl(msqid, IPC_STAT, &stMsgQ);
+
+			int mode;
+			printf("Current mode: %#o\n", stMsgQ.msg_perm.mode);
+			fprintf(stderr, "Enter new mode: ");
+			scanf("%o", &mode);
+			if(mode > 0777 || mode < 0)
+			{
+				printf("Invalid mode\n");
+				continue;
+			}
+			stMsgQ.msg_perm.mode = mode;
+
+			// IPC_SET:设置属性
+			ret = msgctl(msqid, IPC_SET, &stMsgQ);
+			if(ret)
+			{
+				perror("Error");
+				continue;
+			}
+			else
+			{
+				PrintSTATInfo(&stMsgQ);
+			}
+		}
+		else if(!strcmp(szCmd, "exit"))
+		{
+			break;
+		}
+		
+	}
+
+	fprintf(stderr, "\n\n----End----\n\nDelete message queue?(y/n)");
+	scanf("%s", szCmd);
+	// IPC_RMID:删除消息队列
+	if(!strcmp(szCmd, "y"))
+	{
+		ret = msgctl(msqid, IPC_RMID, NULL);
+		if(ret)
+			perror("Error");
+		else
+			printf("----Done----\n\n");
+	}
 
 }
 
