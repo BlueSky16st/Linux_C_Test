@@ -62,6 +62,8 @@ void TestSem()
 	*/
 
 	unsigned short arr[] = { 5, 5, 5, 5, 5 };
+	// 信号量的设置
+	// SETALL：将数组的值设置到信号集的值，参数2为信号集的数量
 	int ret = semctl(semId, SET_NUM, SETALL, arr);
 	if(ret)
 	{
@@ -69,8 +71,6 @@ void TestSem()
 		return;
 	}
 	printf("Init arr to 5 5 5 5 5\n");
-	
-
 
 }
 
