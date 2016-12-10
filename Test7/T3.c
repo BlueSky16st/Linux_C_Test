@@ -10,6 +10,7 @@ void TestSem();
 void TestPV(int semid);
 void TestSemCtl(int semid);
 void printSemInfo(struct semid_ds * stSem);
+void PrintSysInfo(struct seminfo * stInfo);
 
 int main(void)
 {
@@ -18,7 +19,7 @@ int main(void)
     return 0;
 }
 
-//创建新的信号集
+// 信号集
 void TestSem()
 {
 	char szFile[] = "a.txt";
@@ -68,10 +69,10 @@ void TestSem()
 	while(1)
 	{
 		printf("-----------------------------\n");
-		printf("输入操作：\n");
-		printf("pv: PV操作\n");
-		printf("ctl: 控制信号量\n");
-		printf("exit: 退出\n");
+		printf("\t输入操作：\n");
+		printf("\tpv: PV操作\n");
+		printf("\tctl: 控制信号量\n");
+		printf("\texit: 退出\n");
 		fprintf(stderr, "->");
 		scanf("%s", str);
 		printf("-----------------------------\n");
@@ -159,12 +160,16 @@ void TestSemCtl(int semid)
 
 	while(1)
 	{
-		printf("输入操作：\n");
-		printf("setall: 初始化信号集\n");
-		printf("getall: 输出信号集\n");
-		printf("stat: 输出信号集信息\n");
-		printf("set: 设置信号集权限\n");
-		printf("exit: 退出\n");
+		printf("\t输入操作：\n");
+		printf("\tsetall: 初始化信号集\n");
+		printf("\tgetall: 输出信号集\n");
+		printf("\tstat: 输出信号集信息\n");
+		printf("\tset: 设置信号集权限\n");
+		printf("\tseminfo: 获取系统信号集信息\n");
+		printf("\tsetval: 设置指定信号量的值\n");
+		printf("\tgetval: 获取指定信号量的值\n");
+		printf("\tgetstatus: 获取信号量正在阻塞的进程数和最后一次操作的进程号\n");
+		printf("\texit: 退出\n");
 
 		char str[20];
 		fprintf(stderr, "->");
@@ -260,6 +265,83 @@ void TestSemCtl(int semid)
 			printf("\nDone.\n");
 
 		}
+		else if(strcmp(str, "seminfo") == 0)
+		{
+			struct seminfo stSysInfo;
+
+			// 获取系统信号集信息
+			ret = semctl(semid, SEM_NUM, SEM_INFO, &stSysInfo);
+
+			PrintSysInfo(&stSysInfo);
+
+		}
+		else if(strcmp(str, "setval") == 0)
+		{
+			// 设置信号量值
+
+			int i = 0, val = 0;
+
+			fprintf(stderr, "输入信号量索引(0-%d)：", SEM_NUM - 1);
+			scanf("%d", &i);
+			if(i < 0 || i >= SEM_NUM - 1)
+			{
+				printf("超出范围\n");
+				continue;
+			}
+			
+			fprintf(stderr, "输入信号量值：");
+			scanf("%d", &val);
+			ret = semctl(semid, i, SETVAL, val);
+			if(ret)
+			{
+				perror("Error");
+				continue;
+			}
+			printf("Done.\n");
+
+		}
+		else if(strcmp(str, "getval") == 0)
+		{
+			// 获取指定信号量的值
+			int i = 0, val = 0;
+
+			fprintf(stderr, "输入信号量索引(0-%d)：", SEM_NUM - 1);
+			scanf("%d", &i);
+			if(i < 0 || i >= SEM_NUM - 1)
+			{
+				printf("超出范围\n");
+				continue;
+			}
+
+			val = semctl(semid, i, GETVAL, NULL);
+			if(ret)
+			{
+				perror("Error");
+				continue;
+			}
+			printf("sem[%d] value: %d\n", i, val);
+
+		}
+		else if(strcmp(str, "getstatus") == 0)
+		{
+			int pCnt, zCnt, iPid;
+			printf("Index\tpCnt\tzCnt\tiPid\n");
+			for(int i = 0; i < SEM_NUM; i++)
+			{
+				// GETNCNT：获取第i个信号量阻塞了几个做P操作的进程
+				pCnt = semctl(semid, i, GETNCNT, NULL);
+
+				// GETZCNT：获取第i个信号量阻塞了几个做Z操作的进程
+				zCnt = semctl(semid, i, GETZCNT, NULL);
+
+				// GETPID：获取第i个信号量最后做P或V或Z操作的进程ID
+				iPid = semctl(semid, i, GETPID, NULL);
+
+				printf("%d\t%d\t%d\t%d\n", i, pCnt, zCnt, iPid);
+			}
+			printf("\n");
+
+		}
 		else if(strcmp(str, "exit") == 0)
 		{
 			break;
@@ -279,13 +361,26 @@ void printSemInfo(struct semid_ds * stSem)
 	printf("Creator uid: %d\n", stSem->sem_perm.cuid);
 	printf("Creator guid: %d\n", stSem->sem_perm.cgid);
 	printf("Mode: %#o\n", stSem->sem_perm.mode);
-	printf("Seq: %d\n\n", stSem->sem_perm.__seq);
+	printf("Seq: %d\n", stSem->sem_perm.__seq);
 
-	printf("操作信息\n");
+	printf("\n操作信息\n");
 	printf("Last PV time: %d\n", (int)stSem->sem_otime);
 	printf("Last CTRL time: %d\n", (int)stSem->sem_ctime);
 	printf("Sem Count: %d\n", (int)stSem->sem_nsems);
 
 }
 
+void PrintSysInfo(struct seminfo * stInfo)
+{
+	printf("\n系统信号量信息\n");
+	printf("当前信号集数: %d\n", stInfo->semusz);
+	printf("当前信号集中信号量数： %d\n", stInfo->semaem);
 
+	printf("\n信号集限制信息\n");
+	printf("最多允许创建信号集数: %d\n", stInfo->semmni);
+	printf("信号集最多创建信号量数: %d\n", stInfo->semmsl);
+	printf("信号量值的最大值: %d\n", stInfo->semvmx);
+	printf("所有信号集中信号量值的总和的最大值: %d\n", stInfo->semmns);
+	printf("semop操作最多允许同时操作信号量数: %d\n", stInfo->semopm);
+
+}
