@@ -5,6 +5,8 @@
 #include <unistd.h>
 #include <string.h>
 
+// gcc编译时需要加入-lpthread
+
 int ret;
 void * thread()
 {
@@ -156,6 +158,9 @@ void TheadAttr()
 
     pthread_t id;
     pthread_create(&id, &attr, Print_SelfAttr, NULL);
+
+    // 销毁线程属性
+    pthread_attr_destroy(&attr);
 
     sleep(1);
     pthread_join(id, NULL);
