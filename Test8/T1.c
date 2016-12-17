@@ -20,7 +20,7 @@ void * thread()
         usleep(1000);
     }
 
-    // 线程退出
+    // 线程退出，退出值不能使用局部变量
     ret = 100;
     pthread_exit(&ret);
     return NULL;
@@ -57,7 +57,7 @@ void * largeSort(void * param)
     N_ARR stArr;
     memcpy(&stArr, param, sizeof(N_ARR));
 
-    // sort...__a
+    // sort...
 
     return NULL;
 
@@ -119,7 +119,7 @@ void TestThread3()
     stArr.size = sizeof(arr) / sizeof(arr[0]);
 
     pthread_t id;
-    pthread_create(&id, NULL, largeSort, (void *)&arr);
+    pthread_create(&id, NULL, largeSort, (void *)&stArr);
 
     pthread_join(id, NULL);
 
@@ -127,7 +127,7 @@ void TestThread3()
 
 
 
-// 获取线程属性
+// 获取线程分离状态
 void * Print_SelfAttr()
 {
     pthread_attr_t attr;
@@ -144,7 +144,7 @@ void * Print_SelfAttr()
 
 }
 
-// 设置线程属性
+// 设置线程分离状态
 void TheadAttr()
 {
     pthread_attr_t attr;
@@ -153,7 +153,8 @@ void TheadAttr()
     pthread_attr_init(&attr);
     
     // 设置线程分离状态
-    // 设置了PTHREAD_CREATE_DETACHED，使pthread_join()无效
+    // PTHREAD_CREATE_JOINABLE，默认值，可与其它线程连接，pthread_join()有效
+    // PTHREAD_CREATE_DETACHED，pthread_join()无效
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
     pthread_t id;
@@ -174,7 +175,7 @@ int main(void)
 
     //TestThread2();
 
-    TheadAttr();
+    //TheadAttr();
 
     return 0;
 }
