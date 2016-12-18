@@ -21,7 +21,7 @@ void * thread()
     }
 
     // 线程退出，退出值不能使用局部变量
-    ret = 100;
+    ret = 100;c
     pthread_exit(&ret);
     return NULL;
 
