@@ -81,8 +81,8 @@ void TCP_Server()
             break;
         }
 
-        // inet_ntoa：数字型地址转字符串地址
-        // ntohs：网络序转主机序（大字节序转小字节序）
+        // inet_ntoa()：数字型地址转字符串地址
+        // ntohs()：网络序转主机序（大字节序转小字节序）
         printf("Connect from %s:%d\n", inet_ntoa(clientAddr.sin_addr), 
                                        ntohs(clientAddr.sin_port));
         
