@@ -11,6 +11,7 @@
 
 void TCP_Server();
 void TCP_Client();
+void * Comm_thread(void * param);
 
 int main(int argc, char ** argv)
 {
@@ -83,7 +84,7 @@ void TCP_Server()
 
         // inet_ntoa()：数字型地址转字符串地址
         // ntohs()：网络序转主机序（大字节序转小字节序）
-        printf("Connect from %s:%d\n", inet_ntoa(clientAddr.sin_addr), 
+        printf("客户端已连接：%s:%d\n", inet_ntoa(clientAddr.sin_addr), 
                                        ntohs(clientAddr.sin_port));
         
         
@@ -91,6 +92,13 @@ void TCP_Server()
         //send(clientFd, szTip, strlen(szTip), 0);
         write(clientFd, szTip, strlen(szTip));
 
+        // 使用线程对每个客户端做响应
+        pthread_t pt;
+        pthread_create(&pt, NULL, Comm_thread, (void *)&clientFd);
+
+
+
+        /*
         while(1)
         {        
             // 接收数据
@@ -102,11 +110,18 @@ void TCP_Server()
                 perror("read Fail");
                 break;
             }
+            if(ret == 0)
+            {
+                printf("断开连接\n");
+                break;
+            }
             printf("recv: %s\n", szBuf);
         }
 
         // 关闭客户端连接
         close(clientFd);
+        */
+
 
     }
 
@@ -156,6 +171,11 @@ void TCP_Client()
             perror("read Fail");
             break;
         }
+        if(ret == 0)
+        {
+            printf("服务器断开连接\n");
+            break;
+        }
         printf("recv: %s\n", szBuf);
 
         fprintf(stderr, "send: ");
@@ -165,10 +185,42 @@ void TCP_Client()
         
     }
 
-
 }
 
+void * Comm_thread(void * param)
+{
+    int fd = *(int *)param;
+    int ret;
 
+    char szBuf[1024];
+    char szMsg[] = "I received.";
+
+    while(1)
+    {
+        memset(szBuf, 0, 1024);
+        ret = read(fd, szBuf, 1024);
+
+        if(ret < 0)
+        {
+            perror("read Fail");
+            break;
+        }
+        if(ret == 0)
+        {
+            printf("断开连接\n");
+            break;
+        }
+        
+        printf("接收消息：%s\n", szBuf);
+
+        write(fd, szMsg, sizeof(szMsg));
+
+    }
+    close(fd);
+    
+    return NULL;
+
+}
 
 
 

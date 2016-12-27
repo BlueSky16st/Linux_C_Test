@@ -64,7 +64,7 @@ typedef struct tagTcpHeader
     unsigned short usUrgPtr;
     unsigned char data[0];
 
-} TCPHEADER_S;
+} TCPHEAD_S;
 
 
 
@@ -81,23 +81,25 @@ int main(void)
 
 
 
+// 输出IP头信息
 void printIpHead(IPHEAD_S * pIpHead)
 {
     printf("\n--------------------\n");
+    printf("IP头信息\n");
 
     printf("版本号：%d\n", pIpHead->ucVer);
     printf("首部长度：%d\n", pIpHead->ucHeadLen);
     printf("服务类型：%d\n", pIpHead->ucTos);
 
     // 把网络序转主机序
-    printf("数据长度：%d\n", htons(pIpHead->usLen));
-    printf("标识位：%d\n", htons(pIpHead->usIdent));
+    printf("数据长度：%d\n", ntohs(pIpHead->usLen));
+    printf("标识位：%d\n", ntohs(pIpHead->usIdent));
 
     printf("标识：%d\n", pIpHead->usFlag);
     printf("偏移：%d\n", pIpHead->usOffset);
     printf("TTL：%d\n", pIpHead->ucTTL);
     printf("协议：%d\n", pIpHead->ucProtocol);
-    printf("首部检验和:%d\n", htons(pIpHead->usChkSum));
+    printf("首部检验和:%d\n", ntohs(pIpHead->usChkSum));
 
     struct sockaddr_in addr;
     // s_addr是网络序，所以uiSrcIp和uiDstIp均不需要转换成主机序
@@ -106,6 +108,29 @@ void printIpHead(IPHEAD_S * pIpHead)
 
     addr.sin_addr.s_addr = pIpHead->uiDstIp;
     printf("目标地址：%s\n", inet_ntoa(addr.sin_addr));
+
+    printf("\n--------------------\n");
+
+}
+
+// 输出TCP头信息
+void printfTcpHead(TCPHEAD_S * pHead)
+{
+    printf("\n--------------------\n");
+    printf("TCP头信息\n");
+
+    // 把网络序转主机序
+    printf("源端口：%d\n", ntohs(pHead->srcPort));
+    printf("目标端口：%d\n", ntohs(pHead->dstProt));
+    printf("序列号：%d\n", ntohl(pHead->uiSeq));
+    printf("确定序列号：%d\n", ntohl(pHead->uiSeqQ));
+    printf("标识位：%d %d %d %d %d %d\n", 
+           pHead->fin, pHead->syn, pHead->rst,
+           pHead->psh, pHead->ack, pHead->urg);
+    printf("头部长度：%d\n", pHead->usHeadLen);
+    printf("窗口大小：%d\n", ntohs(pHead->usWinLen));
+    printf("校验和：%d\n", ntohs(pHead->usChkSum));
+    printf("紧急数据偏移量：%d\n", ntohs(pHead->usUrgPtr));
 
     printf("\n--------------------\n");
 
@@ -160,8 +185,9 @@ void CaptureData()
 
         //printf("Data: %s\n", pIpHead->data);
 
-        TCPHEADER_S * pTcpHead = (TCPHEADER_S *)pIpHead->data;
-        printf("%s\n", pTcpHead->data);
+        TCPHEAD_S * pTcpHead = (TCPHEAD_S *)pIpHead->data;
+        printfTcpHead(pTcpHead);
+        printf("Data: %s\n", pTcpHead->data);
 
 
 
