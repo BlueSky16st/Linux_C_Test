@@ -89,6 +89,9 @@ void EPoll()
     struct epoll_event ev_res[PROCESS_NUM];
     while(1)
     {
+        fprintf("stderr", "发送：");
+
+
         ret = epoll_wait(epfd, ev_res, PROCESS_NUM, -1);
         if(ret < 0)
         {
@@ -106,6 +109,11 @@ void EPoll()
     }
 
     close(fd);
+    std::map<int, struct sockaddr_in>::iterator it;
+    for(it = g_fdmap.begin(); it != g_fdmap.end(); it++)
+    {
+        close(it->first);
+    }
 
 }
 
@@ -123,6 +131,18 @@ void epoll_process(int epfd, struct epoll_event * ev_res, int cnt)
         if(ev_res[i].data.fd == STDIN_FILENO)
         {
             // 输入消息给所有客户端
+
+            memset(szBuf, 0, 100);
+            ret = read(STDIN_FILENO, szBuf, 100);
+            if(ret > 0)
+            {
+                for(it = g_fdmap.begin(); it != g_fdmap.end(); it++)
+                {
+                    write(it->first, szBuf, strlen(szBuf));
+                }
+            }
+
+
         }
         else if(ev_res[i].data.fd == fd)
         {
@@ -160,7 +180,6 @@ void epoll_process(int epfd, struct epoll_event * ev_res, int cnt)
         else
         {
             // 客户端消息
-            
             memset(szBuf, 0, 100);
 
             it = g_fdmap.find(ev_res[i].data.fd);
