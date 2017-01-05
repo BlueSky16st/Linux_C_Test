@@ -69,22 +69,14 @@ void TcpServer()
         FD_ZERO(&fdset);
         FD_SET(fd, &fdset);
 
+        // 监控标准输入
+        FD_SET(0, &fdset);
+        fprintf(stderr, "发送: ");
+
         for(int i = 0; i < nConn; i++)
         {
             FD_SET(fdArr[i], &fdset);
         }
-
-
-
-        // 发送消息给所有客户端
-        fprintf(stderr, "Send: ");
-        scanf("%s", szMsg);
-        for(int i = 0; i < nConn; i++)
-        {
-            write(fdArr[i], szMsg, strlen(szMsg));
-        }
-
-
 
         ret = select(maxfd + 1, &fdset, NULL, NULL, NULL);
 
@@ -100,6 +92,16 @@ void TcpServer()
         }
         else
         {
+            if(FD_ISSET(0, &fdset))
+            {
+                // 发送消息给所有客户端
+                scanf("%s", szMsg);
+                for(int i = 0; i < nConn; i++)
+                {
+                    write(fdArr[i], szMsg, strlen(szMsg));
+                }
+            }
+
             if(FD_ISSET(fd, &fdset))
             {
                 clientFd = accept(fd, (struct sockaddr *)&srcAddr, &addrLen);
@@ -113,7 +115,7 @@ void TcpServer()
                 {
                     char szTip[] = "已达最大连接数";
                     write(clientFd, szTip, sizeof(szTip));
-                    printf("已达最大连接数，新的连接已断开\n");
+                    printf("\r已达最大连接数，新的连接已断开\n");
                     close(clientFd);
                 }
                 else
@@ -121,9 +123,9 @@ void TcpServer()
                     char szTip[] = "Welcome!";
                     write(clientFd, szTip, sizeof(szTip));
                     
-                    printf("有新连接，来自：[%d](%s:%d)\n", clientFd, 
-                                                         inet_ntoa(srcAddr.sin_addr), 
-                                                         ntohs(srcAddr.sin_port));
+                    printf("\r有新连接，来自：[%d](%s:%d)\n", clientFd, 
+                                                           inet_ntoa(srcAddr.sin_addr), 
+                                                           ntohs(srcAddr.sin_port));
 
                     fdArr[nConn++] = clientFd;
                     if(clientFd > maxfd)
@@ -166,17 +168,17 @@ void RecvMsg(int * fdArr, int index, int * pnConn)
     {
         // 断开连接
         // 需要从fdArr中删除fd
-        printf("[%d]已断开连接\n", fdArr[index]);
+        printf("\r[%d]已断开连接\n", fdArr[index]);
         close(fdArr[index]);
-        for(int i = index + 1; i < *pnConn; i++)
+        for(int i = index; i < *pnConn - 1; i++)
         {
-            fdArr[index] = fdArr[i];
+            fdArr[i] = fdArr[i + 1];
         }
         (*pnConn)--;
     }
     else
     {
-        printf("接收：%s\n", szBuf);
+        printf("\r接收：%s\n", szBuf);
     }
 
 

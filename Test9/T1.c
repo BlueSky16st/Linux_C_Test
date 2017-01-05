@@ -162,6 +162,7 @@ void TCP_Client()
     }
 
     char szBuf[1024], szMsg[100];
+
     while(1)
     {
         memset(szBuf, 0, 1024);
@@ -178,7 +179,10 @@ void TCP_Client()
         }
         printf("recv: %s\n", szBuf);
 
+
+
         fprintf(stderr, "send: ");
+
         memset(szBuf, 0, 1024);
         read(0, szMsg, 100);
         ret = write(fd, szBuf, strlen(szMsg));

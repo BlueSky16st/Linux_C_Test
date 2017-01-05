@@ -156,7 +156,7 @@ void CaptureData()
     }
 
     addr.sin_family = AF_INET;
-    addr.sin_port = htonl(RAWPORT);
+    addr.sin_port = htons(RAWPORT);
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
 
     ret = bind(fd, (struct sockaddr *)&addr, addrlen);
