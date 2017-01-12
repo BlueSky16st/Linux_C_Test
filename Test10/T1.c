@@ -111,13 +111,13 @@ void TestMySQL()
 			MYSQL_RES * res = mysql_use_result(&conn);
 			
 			MYSQL_ROW row;
-			printf("+----+--------+------+-------------+\n");
+			printf("+----+--------+---------+----------+\n");
 			printf(fmt, "id", "name", "sex", "mobile");
 			while((row = mysql_fetch_row(res)) != NULL)
 			{
 				printf(fmt, row[0], row[1], row[2], row[3]);
 			}
-			printf("+----+--------+------+-------------+\n");
+			printf("+----+--------+---------+----------+\n");
 		}
 
 		printf("\n执行成功\n");
